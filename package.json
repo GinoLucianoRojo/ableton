@@ -1,8 +1,8 @@
 {
   "name": "ableton",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parser for Ableton Live's .als format",
-  "main": "abelton.js",
+  "main": "ableton.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
