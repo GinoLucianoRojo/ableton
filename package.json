@@ -1,0 +1,21 @@
+{
+  "name": "ableton",
+  "version": "0.0.1",
+  "description": "Parser for Ableton Live's .als format",
+  "main": "abelton.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ableton"
+  ],
+  "author": "Giles Lavelle",
+  "license": "MIT",
+  "dependencies": {
+    "concat-stream": "^1.4.6",
+    "xml2js": "^0.4.4"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.8.0"
+  }
+}
