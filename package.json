@@ -5,7 +5,7 @@
   "main": "ableton.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "make build"
+    "prepublish": "grunt coffee"
   },
   "keywords": [
     "ableton"
@@ -18,7 +18,13 @@
     "xml2js": "^0.4.4"
   },
   "devDependencies": {
-    "coffee-script": "^1.9.0"
+    "coffee-script": "^1.9.0",
+    "coffeelint": "^1.9.3",
+    "grunt": "^0.4.5",
+    "grunt-coffeelint": "0.0.13",
+    "grunt-contrib-coffee": "^0.13.0",
+    "jit-grunt": "^0.9.1",
+    "time-grunt": "^1.1.0"
   },
   "repository": {
     "type": "git",

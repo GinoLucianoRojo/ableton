@@ -1,4 +1,4 @@
-# Ableton
+# Ableton [![Build Status](https://travis-ci.org/lavelle/ableton.svg)](https://travis-ci.org/lavelle/ableton)
 
 Parser for Ableton Live's .als file format.
 
@@ -16,19 +16,19 @@ var Ableton = require('ableton');
 var ableton = new Ableton('/path/to/project.als');
 
 // Read
-ableton.read(function(error, data) {
+ableton.read(function(error, $) {
   if (error) {
     console.error(error);
   }
   else {
-    // `data` is a JS object representing the Ableton project.
-    console.log(data);
+    // `data` is a .
+    console.log($('ableton').attr('creator'));
   }
 });
 
 // Write
-var data = ... // Get the object returned by a previous `read` call from somewhere
-ableton.write(data, function(error) {
+var xml = ... // An XML string representing an Ableton project file
+ableton.write(xml, function(error) {
   if (error) {
     console.log(error);
   }

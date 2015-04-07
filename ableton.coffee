@@ -1,10 +1,9 @@
 fs = require 'fs'
 zlib = require 'zlib'
 concat = require 'concat-stream'
-{Parser, Builder} = require 'xml2js'
 cheerio = require 'cheerio'
 
-fsError = (callback) ->
+fsError = (callback, path) ->
   fn = (error) ->
     switch error.code
       when 'ENOENT'
@@ -17,7 +16,7 @@ fsError = (callback) ->
 
   return fn
 
-unzipError = (callback) ->
+unzipError = (callback, path) ->
   return (error) ->
     callback(new Error("'#{path}' is not a valid Ableton project"), null)
 
@@ -34,30 +33,24 @@ class Ableton
   constructor: (@path, @stringMode = false) ->
 
   read: (callback) ->
-    parser = new Parser(mergeAttrs: yes)
-    global.path = @path
-
-    fs.createReadStream(path).on('error', fsError(callback))
-      .pipe(zlib.createGunzip()).on('error', unzipError(callback))
+    fs.createReadStream(@path).on('error', fsError(callback, @path))
+      .pipe(zlib.createGunzip()).on('error', unzipError(callback, @path))
       .pipe(concat(onLoad(callback, @stringMode)))
 
-  write: (data, callback) ->
+  write: (xml, callback) ->
     unless data
-      callback(new Error("No data to write"), null)
+      callback(new Error('No data to write'))
       return
 
-    builder = new Builder()
     global.path = @path
 
-    ws = fs.createWriteStream(path)
-    ws.on('error', fsError(callback))
-
-    xml = builder.buildObject(data)
-
     zlib.gzip(xml, (error, data) ->
-      fs.writeFile(path, data, (error) ->
-        callback(error, null)
-      )
+      if error
+        callback(error)
+      else
+        fs.writeFile(path, data, (error) ->
+          callback(error)
+        )
     )
 
 module.exports = Ableton
