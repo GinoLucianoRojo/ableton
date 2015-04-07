@@ -1,4 +1,9 @@
-.PHONY: build
+.PHONY: build test
+
+COFFEE=./node_modules/.bin/coffee
 
 build:
-	./node_modules/.bin/coffee -c ableton.coffee
+	$(COFFEE) -c ableton.coffee
+
+test:
+	$(COFFEE) test/test.coffee
