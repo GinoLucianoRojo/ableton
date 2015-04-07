@@ -1,6 +1,6 @@
 {
   "name": "ableton",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Parser for Ableton Live's .als format",
   "main": "ableton.js",
   "scripts": {
