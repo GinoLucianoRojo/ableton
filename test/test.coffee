@@ -25,7 +25,7 @@ a.read((error, $) ->
   console.log 'Tests passed'
 )
 
-b = new Ableton('test/plugins.als')
+b = new Ableton('test/plugins.als', 'dom')
 
 b.read((error, $) ->
   assert.equal(error, null)
@@ -47,3 +47,12 @@ b.read((error, $) ->
   console.log 'Tests passed'
 )
 
+b = new Ableton('test/plugins.als', 'js')
+
+b.read((error, obj) ->
+  assert.equal(error, null)
+  assert.equal(typeof obj, 'object')
+  assert.equal(obj.Ableton.Creator[0], 'Ableton Live 9.1.7')
+
+  console.log 'Tests passed'
+)

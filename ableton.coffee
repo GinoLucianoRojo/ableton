@@ -2,6 +2,7 @@ fs = require 'fs'
 zlib = require 'zlib'
 concat = require 'concat-stream'
 cheerio = require 'cheerio'
+{Parser, Builder} = require 'xml2js'
 
 fsError = (callback, path) ->
   fn = (error) ->
@@ -20,22 +21,28 @@ unzipError = (callback, path) ->
   return (error) ->
     callback(new Error("'#{path}' is not a valid Ableton project"), null)
 
-onLoad = (callback, stringMode) ->
+onLoad = (callback, parseMode) ->
   return (xml) ->
-    if stringMode
-      callback(null, xml)
-    else
-      dom = cheerio.load(xml)
-      callback(null, dom)
+    switch parseMode
+      when 'xmlstring'
+        callback(null, xml)
+      when 'dom'
+        dom = cheerio.load(xml)
+        callback(null, dom)
+      when 'js'
+        parser = new Parser(mergeAttrs: yes)
+        parser.parseString(xml, callback)
+      else
+        throw new Error("Invalid parse mode #{parseMode}.")
 
 # Class for reading and writing the Ableton Live project file format
 class Ableton
-  constructor: (@path, @stringMode = false) ->
+  constructor: (@path, @parseMode = 'dom') ->
 
   read: (callback) ->
     fs.createReadStream(@path).on('error', fsError(callback, @path))
       .pipe(zlib.createGunzip()).on('error', unzipError(callback, @path))
-      .pipe(concat(onLoad(callback, @stringMode)))
+      .pipe(concat(onLoad(callback, @parseMode)))
 
   write: (xml, callback) ->
     unless data
