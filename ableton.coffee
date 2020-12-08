@@ -45,7 +45,7 @@ class Ableton
       .pipe(concat(onLoad(callback, @parseMode)))
 
   write: (xml, callback) ->
-    unless data
+    unless xml
       callback(new Error('No data to write'))
       return
 
