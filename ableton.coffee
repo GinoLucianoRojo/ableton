@@ -27,7 +27,7 @@ onLoad = (callback, parseMode) ->
       when 'xmlstring'
         callback(null, xml)
       when 'dom'
-        dom = cheerio.load(xml)
+        dom = cheerio.load(xml, { xmlMode: true })
         callback(null, dom)
       when 'js'
         parser = new Parser(mergeAttrs: yes)
