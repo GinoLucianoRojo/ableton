@@ -1,8 +1,10 @@
 {
-  "name": "ableton",
-  "version": "0.0.8",
+  "name": "@pohy/ableton",
+  "private": false,
+  "version": "0.0.10",
   "description": "Parser for Ableton Live's .als format",
   "main": "ableton.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "grunt coffee"
@@ -10,7 +12,10 @@
   "keywords": [
     "ableton"
   ],
-  "author": "Giles Lavelle",
+  "authors": "Giles Lavelle",
+  "contributors": [
+    "David Pohan"
+  ],
   "license": "MIT",
   "dependencies": {
     "cheerio": "^0.19.0",
@@ -18,6 +23,7 @@
     "xml2js": "^0.4.8"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.23",
     "coffee-script": "^1.9.0",
     "coffeelint": "^1.9.3",
     "grunt": "^0.4.5",
@@ -28,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lavelle/ableton.git"
+    "url": "https://github.com/pohy/ableton.git"
   }
 }
