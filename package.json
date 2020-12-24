@@ -1,5 +1,6 @@
 {
-  "name": "ableton",
+  "name": "@pohy/ableton",
+  "private": false,
   "version": "0.0.9",
   "description": "Parser for Ableton Live's .als format",
   "main": "ableton.js",
@@ -11,7 +12,8 @@
   "keywords": [
     "ableton"
   ],
-  "author": "Giles Lavelle",
+  "authors": "Giles Lavelle",
+  "contributors": ["David Pohan"],
   "license": "MIT",
   "dependencies": {
     "cheerio": "^0.19.0",
@@ -30,6 +32,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lavelle/ableton.git"
+    "url": "https://github.com/pohy/ableton.git"
   }
 }
