@@ -1,7 +1,7 @@
 {
   "name": "@pohy/ableton",
   "private": false,
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Parser for Ableton Live's .als format",
   "main": "ableton.js",
   "types": "index.d.ts",
@@ -13,7 +13,9 @@
     "ableton"
   ],
   "authors": "Giles Lavelle",
-  "contributors": ["David Pohan"],
+  "contributors": [
+    "David Pohan"
+  ],
   "license": "MIT",
   "dependencies": {
     "cheerio": "^0.19.0",
